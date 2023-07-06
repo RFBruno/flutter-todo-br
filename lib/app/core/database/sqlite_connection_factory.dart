@@ -1,3 +1,4 @@
+import 'package:flutter_todo_br/app/core/database/sqlite_migration_factory.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:synchronized/synchronized.dart';
@@ -50,7 +51,27 @@ class SqliteConnectionFactory {
   Future<void> _onConfigure(Database db) async {
     await db.execute('PRAGMA foreign_keys = ON');
   }
-  Future<void> _onCreate(Database db, int version) async {}
-  Future<void> _onUpgrade(Database db, int oldVersion, int version) async {}
+  Future<void> _onCreate(Database db, int version) async {
+    final batch = db.batch();
+
+    final migrations = SqliteMigrationFactory().getCreateMigration();
+
+    for (var migration in migrations) {
+      migration.create(batch);
+    }
+
+    batch.commit();
+  }
+  Future<void> _onUpgrade(Database db, int oldVersion, int version) async {
+    final batch = db.batch();
+
+    final migrations = SqliteMigrationFactory().getUpgradeMigration(oldVersion);
+
+    for (var migration in migrations) {
+      migration.update(batch);
+    }
+
+    batch.commit();
+  }
   Future<void> _onDowgrade(Database db, int oldVersion, int version) async {}
 }
