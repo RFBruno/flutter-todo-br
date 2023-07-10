@@ -33,6 +33,7 @@ class _AppWidgetState extends State<AppWidget> {
       debugShowCheckedModeBanner: false,
       title: 'Todo list BR',
       theme: TodoListUiConfig.theme,
+      initialRoute: '/login',
       routes: {
         ...AuthModule().routers
       },
