@@ -1,16 +1,55 @@
-# flutter_todo_br
 
-A new Flutter project.
+![Logo of the project](https://firebasestorage.googleapis.com/v0/b/portfolio-a7442.appspot.com/o/profile%20github%20images%2Fgithubcapa.png?alt=media&token=091ec4e2-aa66-4b89-a768-6c1a026a262e)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## Todo List
+This is a flutter app, developed for practice.
 
-A few resources to get you started if this is your first Flutter project:
+## Technology 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Here are the technologies used in this project.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Flutter version  3.10.0
+* Dart version 3.0.0
+
+## Techniques Used
+* Modular architecture
+
+
+
+## Services Used
+
+* Github
+
+## Getting started
+
+* Dependency
+  - Flutter environment   
+
+## Pages
+* Login
+![Login page](img/login.png)
+* Register
+![Register page](img/register.png)
+## Features
+
+The main features of the application are:
+ - Login.
+ - Register
+ 
+
+
+## Links
+  - Repository: https://github.com/RFBruno/flutter-todo-br
+
+  ## Versioning
+
+  1.0.0.0
+
+
+  ## Authors
+
+  * **Bruno Rafael** 
+
+  Please follow github and join us!
+  Thanks to visiting me and good coding!
