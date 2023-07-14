@@ -1,9 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
 import 'package:flutter_todo_br/app/core/notifier/default_change_notifier.dart';
-import 'package:flutter_todo_br/app/core/notifier/default_listener_notifier.dart';
 import 'package:flutter_todo_br/app/exception/auth_exception.dart';
-
 import 'package:flutter_todo_br/app/services/user/user_service.dart';
 
 class RegisterController extends DefaultChangeNotifier {

@@ -15,6 +15,7 @@ class Messages {
   void showInfo(String message) => _showMessage(message, context.primaryColor);
 
   void _showMessage(String message, Color color) {
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),

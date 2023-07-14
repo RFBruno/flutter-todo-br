@@ -3,7 +3,6 @@ import 'package:flutter_todo_br/app/modules/auth/login/login_controller.dart';
 import 'package:flutter_todo_br/app/modules/auth/login/login_page.dart';
 import 'package:flutter_todo_br/app/modules/auth/register/register_controller.dart';
 import 'package:flutter_todo_br/app/modules/auth/register/register_page.dart';
-import 'package:flutter_todo_br/app/services/user/user_service.dart';
 import 'package:provider/provider.dart';
 
 class AuthModule extends TodoListModule {
@@ -11,7 +10,7 @@ class AuthModule extends TodoListModule {
       : super(
           bindings: [
             ChangeNotifierProvider(
-              create: (_) => LoginController(),
+              create: (context) => LoginController(userService: context.read()),
             ),
             ChangeNotifierProvider(
               create: (context) => RegisterController(userService: context.read()),
