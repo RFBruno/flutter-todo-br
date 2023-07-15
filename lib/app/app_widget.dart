@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_br/app/core/database/sqlite_adm_connection.dart';
+import 'package:flutter_todo_br/app/core/navigator/todo_list_navigator.dart';
 import 'package:flutter_todo_br/app/core/ui/todo_list_ui_config.dart';
 import 'package:flutter_todo_br/app/modules/auth/auth_module.dart';
+import 'package:flutter_todo_br/app/modules/home/home_module.dart';
 import 'package:flutter_todo_br/app/modules/splash/splash_page.dart';
 
 class AppWidget extends StatefulWidget {
@@ -33,9 +35,10 @@ class _AppWidgetState extends State<AppWidget> {
       debugShowCheckedModeBanner: false,
       title: 'Todo list BR',
       theme: TodoListUiConfig.theme,
-      initialRoute: '/login',
+      navigatorKey: TodoListNavigator.navigatorKey,
       routes: {
-        ...AuthModule().routers
+        ...AuthModule().routers,
+        ...HomeModule().routers,
       },
       home: const SplashPage(),
     );

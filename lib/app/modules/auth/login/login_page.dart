@@ -36,16 +36,7 @@ class _LoginPageState extends State<LoginPage> {
           }
         }
       },
-      successCallback: (notifier, listenerInstace) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Center(
-              child: Text('logado'),
-            ),
-          ),
-        );
-      },
+      successCallback: (notifier, listenerInstace) {},
     );
   }
 
@@ -160,7 +151,9 @@ class _LoginPageState extends State<LoginPage> {
                               shape: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(30),
                                   borderSide: BorderSide.none),
-                              onPressed: () {},
+                              onPressed: () {
+                                context.read<LoginController>().googleLogin();
+                              },
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,

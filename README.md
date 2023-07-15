@@ -27,15 +27,16 @@ Here are the technologies used in this project.
   - Flutter environment   
 
 ## Pages
-* Login
-![Login page](img/login.png)
-* Register
-![Register page](img/register.png)
+* **Login** <br> ![Login page](img/login.png)
+* **Register** <br> ![Register page](img/register.png)
+* **Drawer** <br> ![Drawer](img/drawer.png)
 ## Features
 
 The main features of the application are:
  - Login.
  - Register
+ - Forgot Password
+ - Side menu
  
 
 

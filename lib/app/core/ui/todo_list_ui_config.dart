@@ -5,13 +5,22 @@ class TodoListUiConfig {
   TodoListUiConfig._();
 
   static ThemeData get theme => ThemeData(
-        
+        colorScheme:
+            ColorScheme.fromSwatch().copyWith(primary: const Color(0XFF5C77CE)),
         textTheme: GoogleFonts.mandaliTextTheme(),
         primaryColor: const Color(0XFF5C77CE),
         primaryColorLight: const Color(0XFFABCBF7),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0XFF5C77CE),
+            backgroundColor: const Color(0XFF5C77CE),
+          ),
+        ),
+        drawerTheme:  const DrawerThemeData(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30),
+              bottomRight: Radius.circular(30),
+              ),
           ),
         ),
       );
