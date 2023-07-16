@@ -19,17 +19,21 @@ class HomeDrawer extends StatelessWidget {
           DrawerHeader(
             decoration: BoxDecoration(
               color: context.primaryColor.withAlpha(70),
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))
+              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30))
             ),
             child: Row(
               children: [
-                Selector<AuthProvider, String>(
+                Selector<AuthProvider, ImageProvider>(
                   selector: (context, authProvider) {
-                    return authProvider.user?.photoURL ?? 'assets/dash.jpg';
+                    if(authProvider.user?.photoURL != null){
+                      return NetworkImage(authProvider.user!.photoURL!);
+                    }else{
+                      return const AssetImage('assets/dash.jpg');
+                    }
                   },
-                  builder: (_, value, __) {
+                  builder: (_, imageValue, __) {
                     return CircleAvatar(
-                      backgroundImage: NetworkImage(value),
+                      backgroundImage: imageValue,
                       radius: 30,
                     );
                   },
