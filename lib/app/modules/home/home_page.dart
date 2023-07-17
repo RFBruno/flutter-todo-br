@@ -4,6 +4,8 @@ import 'package:flutter_todo_br/app/core/ui/todo_list_icons.dart';
 import 'package:flutter_todo_br/app/modules/home/widgets/home_drawer.dart';
 import 'package:flutter_todo_br/app/modules/home/widgets/home_filters.dart';
 import 'package:flutter_todo_br/app/modules/home/widgets/home_header.dart';
+import 'package:flutter_todo_br/app/modules/home/widgets/home_tasks.dart';
+import 'package:flutter_todo_br/app/modules/home/widgets/home_week.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -27,6 +29,10 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
       drawer: HomeDrawer(),
       body: LayoutBuilder(
         builder: (context, constraints) {
@@ -43,7 +49,9 @@ class HomePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       HomeHeader(),
-                      HomeFilters()
+                      HomeFilters(),
+                      HomeWeek(),
+                      HomeTasks()
                     ],
                   ),
                 ),
