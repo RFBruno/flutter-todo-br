@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:flutter_todo_br/app/core/database/sqlite_adm_connection.dart';
 import 'package:flutter_todo_br/app/core/navigator/todo_list_navigator.dart';
 import 'package:flutter_todo_br/app/core/ui/todo_list_ui_config.dart';
@@ -15,7 +17,6 @@ class AppWidget extends StatefulWidget {
 }
 
 class _AppWidgetState extends State<AppWidget> {
-
   final sqliteAdmConnection = SqliteAdmConnection();
 
   @override
@@ -37,6 +38,13 @@ class _AppWidgetState extends State<AppWidget> {
       title: 'Todo list BR',
       theme: TodoListUiConfig.theme,
       navigatorKey: TodoListNavigator.navigatorKey,
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: const [
+        Locale('pt', 'BR'),
+      ],
       routes: {
         ...AuthModule().routers,
         ...HomeModule().routers,

@@ -46,6 +46,10 @@ class DefaultListenerNotifier {
       }
     });
   }
+
+  void dispose() {
+    changeNotifier.dispose();
+  }
 }
 
 typedef SuccessVoidCallback = void Function(
