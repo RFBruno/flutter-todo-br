@@ -37,7 +37,7 @@ class _RegisterPageState extends State<RegisterPage> {
     defaultListener.listener(
       context: context,
       successCallback: (notifier, listenerInstace) {
-        Navigator.pop(context);
+        // Navigator.pop(context); devido a alteração do auth provider
       },
     );
   }

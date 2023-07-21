@@ -14,6 +14,9 @@ Here are the technologies used in this project.
 
 ## Techniques Used
 * Modular architecture
+* Provider
+* Firebase auth
+* SQLite
 
 
 
@@ -30,6 +33,7 @@ Here are the technologies used in this project.
 * **Login** <br> ![Login page](img/login.png)
 * **Register** <br> ![Register page](img/register.png)
 * **Drawer** <br> ![Drawer](img/drawer.png)
+* **Home** <br> ![Home page](img/home.png)
 ## Features
 
 The main features of the application are:
@@ -37,6 +41,9 @@ The main features of the application are:
  - Register
  - Forgot Password
  - Side menu
+ - Filter by date
+ - Create task
+ - Finish task
  
 
 

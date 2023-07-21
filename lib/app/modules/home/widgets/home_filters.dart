@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_br/app/core/ui/theme_extensions.dart';
+import 'package:flutter_todo_br/app/models/task_filter_enum.dart';
+import 'package:flutter_todo_br/app/models/total_tasks_model.dart';
+import 'package:flutter_todo_br/app/modules/home/home_controller.dart';
 import 'package:flutter_todo_br/app/modules/home/widgets/todo_card_filter.dart';
+import 'package:provider/provider.dart';
 
-class HomeFilters extends StatefulWidget {
+class HomeFilters extends StatelessWidget {
   const HomeFilters({super.key});
 
-  @override
-  State<HomeFilters> createState() => _HomeFiltersState();
-}
-
-class _HomeFiltersState extends State<HomeFilters> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,11 +23,36 @@ class _HomeFiltersState extends State<HomeFilters> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              TodoCardFilter(),
-              TodoCardFilter(),
-              TodoCardFilter(),
-              TodoCardFilter(),
-              TodoCardFilter(),
+              TodoCardFilter(
+                label: 'HOJE',
+                taskFilterEnum: TaskFilterEnum.today,
+                totalTasksModel: 
+                  context.select<HomeController, TotalTasksModel?>(
+                    (controller) => controller.todayTotalTasks),
+                selected: context.select<HomeController, TaskFilterEnum>(
+                        (value) => value.filterSelected) ==
+                    TaskFilterEnum.today,
+              ),
+              TodoCardFilter(
+                label: 'AMANHÃ',
+                taskFilterEnum: TaskFilterEnum.tomorrow,
+                totalTasksModel: 
+                  context.select<HomeController, TotalTasksModel?>(
+                    (controller) => controller.tomorrowTotalTasks),
+                selected: context.select<HomeController, TaskFilterEnum>(
+                        (value) => value.filterSelected) ==
+                    TaskFilterEnum.tomorrow,
+              ),
+              TodoCardFilter(
+                label: 'SEMANA',
+                taskFilterEnum: TaskFilterEnum.week,
+                totalTasksModel: 
+                  context.select<HomeController, TotalTasksModel?>(
+                    (controller) => controller.weekTotalTasks),
+                selected: context.select<HomeController, TaskFilterEnum>(
+                        (value) => value.filterSelected) ==
+                    TaskFilterEnum.week,
+              ),
             ],
           ),
         )
