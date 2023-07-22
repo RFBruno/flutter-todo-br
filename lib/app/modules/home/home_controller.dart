@@ -14,6 +14,9 @@ class HomeController extends DefaultChangeNotifier {
   TotalTasksModel? weekTotalTasks;
   List<TaskModel> allTasks = [];
   List<TaskModel> filteredTasks = [];
+  DateTime? initialDateOfWeek;
+  DateTime? selectedDay;
+  var showFinishTask = false;
 
   HomeController({
     required TasksService tasksService,
@@ -51,22 +54,44 @@ class HomeController extends DefaultChangeNotifier {
     notifyListeners();
     List<TaskModel> tasks = [];
 
-    switch(filter){
+    switch (filter) {
       case TaskFilterEnum.today:
         tasks = await _tasksService.getToday();
-      break;
+        break;
       case TaskFilterEnum.tomorrow:
         tasks = await _tasksService.getTomorrow();
-      break;
+        break;
       case TaskFilterEnum.week:
         final weekModel = await _tasksService.getWeek();
+        initialDateOfWeek = weekModel.startDate;
         tasks = weekModel.tasks;
-      break;
+        break;
       default:
     }
     filteredTasks = tasks;
-    allTasks = tasks; 
+    allTasks = tasks;
+
+    if (filter == TaskFilterEnum.week) {
+      if (selectedDay != null) {
+        filterByDay(selectedDay!);
+      } else if (initialDateOfWeek != null) {
+        filterByDay(initialDateOfWeek!);
+      }
+    } else {
+      selectedDay = null;
+    }
+
+    if(!showFinishTask){
+      filteredTasks = filteredTasks.where((t) => !t.finished).toList();
+    }
+
     hideLoading();
+    notifyListeners();
+  }
+
+  void filterByDay(DateTime date) {
+    selectedDay = date;
+    filteredTasks = allTasks.where((task) => task.dateTime == date).toList();
     notifyListeners();
   }
 
@@ -74,5 +99,22 @@ class HomeController extends DefaultChangeNotifier {
     await findTasks(filter: filterSelected);
     await loadTotalTasks();
     notifyListeners();
+  }
+
+  checkOrUncheck(TaskModel task) async {
+    showLoadingAndResetState();
+    notifyListeners();
+    final taskUpdate = task.copyWith(
+      finished: !task.finished,
+    );
+
+    await _tasksService.checkOrUncheck(taskUpdate);
+    hideLoading();
+    refreshPage();
+  }
+
+  showOrHidefinishTask(){
+    showFinishTask = !showFinishTask;
+    refreshPage();
   }
 }

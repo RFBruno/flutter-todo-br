@@ -22,8 +22,8 @@ class TasksRepositoryImpl implements TasksRepository {
 
   @override
   Future<List<TaskModel>> findByPeriod(DateTime start, DateTime end) async {
-    final startFilter = DateTime(start.year, start.month, start.day, 0,0,0);
-    final endFilter = DateTime(end.year, end.month, end.day, 23,59,59);
+    final startFilter = DateTime(start.year, start.month, start.day, 0, 0, 0);
+    final endFilter = DateTime(end.year, end.month, end.day, 23, 59, 59);
 
     final conn = await _sqliteConnectionFactory.openConnection();
     final result = await conn.rawQuery('''
@@ -36,5 +36,18 @@ class TasksRepositoryImpl implements TasksRepository {
       endFilter.toIso8601String(),
     ]);
     return result.map((task) => TaskModel.loadFromDB(task)).toList();
+  }
+
+  @override
+  Future<void> checkOrUncheck(TaskModel task) async {
+    final conn = await _sqliteConnectionFactory.openConnection();
+    final finished = task.finished ? 1 : 0;
+    conn.rawUpdate(
+      'update todo set finalizado = ? where id = ?',
+      [
+        finished,
+        task.id,
+      ],
+    );
   }
 }

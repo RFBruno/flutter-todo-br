@@ -12,6 +12,7 @@ import 'package:flutter_todo_br/app/modules/home/widgets/home_header.dart';
 import 'package:flutter_todo_br/app/modules/home/widgets/home_tasks.dart';
 import 'package:flutter_todo_br/app/modules/home/widgets/home_week.dart';
 import 'package:flutter_todo_br/app/modules/tasks/tasks_module.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   final HomeController _homeController;
@@ -45,7 +46,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> _goToCreateTask(BuildContext context) async {
     await Navigator.of(context).push(
       PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 400),
+        transitionDuration: const Duration(milliseconds: 400),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           animation = CurvedAnimation(
             parent: animation,
@@ -82,8 +83,14 @@ class _HomePageState extends State<HomePage> {
               TodoListIcons.filter,
               color: context.primaryColor,
             ),
+            onSelected: (value) {
+              context.read<HomeController>().showOrHidefinishTask();
+            },
             itemBuilder: (context) => [
-              const PopupMenuItem(child: Text('Mostrar tarefas concluidas'))
+              PopupMenuItem(
+                value: true,
+                child: Text('${context.read<HomeController>().showFinishTask ? 'Ocultar' : 'Mostrar'} tarefas concluidas'),
+              ),
             ],
           )
         ],

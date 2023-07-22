@@ -21,18 +21,25 @@ class HomeWeek extends StatelessWidget {
           const SizedBox(height: 10),
           SizedBox(
             height: 95,
-            child: DatePicker(
-              DateTime.now(),
-              height: 2,
-              daysCount: 7,
-              locale: 'pt_BR',
-              monthTextStyle: const TextStyle(fontSize: 8),
-              dateTextStyle: const TextStyle(fontSize: 13),
-              dayTextStyle: const TextStyle(fontSize: 13),
-              selectionColor: context.primaryColor,
-              selectedTextColor: Colors.white,
+            child: Selector<HomeController, DateTime>(
+              builder: (_, value, __) {
+                return DatePicker(
+                  value,
+                  height: 2,
+                  initialSelectedDate: value,
+                  daysCount: 7,
+                  locale: 'pt_BR',
+                  monthTextStyle: const TextStyle(fontSize: 8),
+                  dateTextStyle: const TextStyle(fontSize: 13),
+                  dayTextStyle: const TextStyle(fontSize: 13),
+                  selectionColor: context.primaryColor,
+                  selectedTextColor: Colors.white,
+                  onDateChange: context.read<HomeController>().filterByDay,
+                );
+              },
+              selector: (context, controller) => controller.initialDateOfWeek ?? DateTime.now(),
             ),
-          )
+          ),
         ],
       ),
     );
