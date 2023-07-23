@@ -33,6 +33,14 @@ class TodoListUiConfig {
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: _primaryColor
+        ),
+
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30)
+            )
+          )
         )
       );
 }

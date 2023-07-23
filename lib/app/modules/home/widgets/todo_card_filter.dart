@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_todo_br/app/core/ui/theme_extensions.dart';
@@ -23,10 +25,16 @@ class TodoCardFilter extends StatefulWidget {
 
   double _getPercentFinish() {
     var total = totalTasksModel?.totalTasks ?? 0.1;
-    if(total == 0) total = 0.1;
+    if (total == 0) total = 0.1;
     final totalFinish = totalTasksModel?.totalTasksFinish ?? 0;
     final result = (totalFinish / total);
     return result;
+  }
+
+  int _getTotalTasksPedenting() {
+    var totalTasks = totalTasksModel?.totalTasks ?? 0;
+    var tasksFinished = totalTasksModel?.totalTasksFinish ?? 0;
+    return totalTasks - tasksFinished;
   }
 
   @override
@@ -35,10 +43,13 @@ class TodoCardFilter extends StatefulWidget {
 
 class _TodoCardFilterState extends State<TodoCardFilter> {
   final date = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.read<HomeController>().findTasks(filter: widget.taskFilterEnum),
+      onTap: () => context
+          .read<HomeController>()
+          .findTasks(filter: widget.taskFilterEnum),
       overlayColor: const MaterialStatePropertyAll(Colors.transparent),
       child: Container(
         constraints: const BoxConstraints(
@@ -58,7 +69,7 @@ class _TodoCardFilterState extends State<TodoCardFilter> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${widget.totalTasksModel?.totalTasks ?? 0} TASKS',
+              '${widget._getTotalTasksPedenting()} TASKS',
               style: context.titleStyle.copyWith(
                 fontSize: 10,
                 color: widget.selected ? Colors.white : Colors.grey,

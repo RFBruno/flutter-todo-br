@@ -81,7 +81,7 @@ class HomeController extends DefaultChangeNotifier {
       selectedDay = null;
     }
 
-    if(!showFinishTask){
+    if (!showFinishTask) {
       filteredTasks = filteredTasks.where((t) => !t.finished).toList();
     }
 
@@ -113,8 +113,26 @@ class HomeController extends DefaultChangeNotifier {
     refreshPage();
   }
 
-  showOrHidefinishTask(){
+  showOrHidefinishTask() {
     showFinishTask = !showFinishTask;
+    refreshPage();
+  }
+
+  Future<void> deleteTaskById(int id) async {
+    try {
+      showLoadingAndResetState();
+      notifyListeners();
+      await _tasksService.deleteById(id);
+    } catch (e) {
+      setError('Errou ao deletar a task');
+    } finally {
+      hideLoading();
+      refreshPage();
+    }
+  }
+
+  cleanDb() async {
+    await _tasksService.cleanDb();
     refreshPage();
   }
 }

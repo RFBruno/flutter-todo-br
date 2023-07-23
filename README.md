@@ -5,6 +5,9 @@
 ## Todo List
 This is a flutter app, developed for practice.
 
+application structured in the model, view and controller system with the service layer and repository,
+developed with componentized widgets.
+
 ## Technology 
 
 Here are the technologies used in this project.
@@ -17,7 +20,6 @@ Here are the technologies used in this project.
 * Provider
 * Firebase auth
 * SQLite
-
 
 
 ## Services Used
@@ -34,6 +36,7 @@ Here are the technologies used in this project.
 * **Register** <br> ![Register page](img/register.png)
 * **Drawer** <br> ![Drawer](img/drawer.png)
 * **Home** <br> ![Home page](img/home.png)
+* **Tasks** <br> ![Tasks widget](img/tasks.png)
 ## Features
 
 The main features of the application are:
@@ -44,6 +47,8 @@ The main features of the application are:
  - Filter by date
  - Create task
  - Finish task
+ - Filter by task finished
+ - Delete task
  
 
 
