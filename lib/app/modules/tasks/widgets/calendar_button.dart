@@ -28,14 +28,14 @@ class CalendarButton extends StatelessWidget {
       },
       borderRadius: BorderRadius.circular(30),
       child: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(30)),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.today,
               color: Colors.grey,
             ),

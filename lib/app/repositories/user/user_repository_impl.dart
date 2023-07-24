@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,7 @@ import 'package:flutter_todo_br/app/repositories/user/user_repository.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserRepositoryImpl implements UserRepository {
-  FirebaseAuth _firebaseAuth;
+  final FirebaseAuth _firebaseAuth;
 
   UserRepositoryImpl({
     required FirebaseAuth firebaseAuth,
@@ -49,9 +48,9 @@ class UserRepositoryImpl implements UserRepository {
       var userCredencial = await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
       return userCredencial.user;
-    } on PlatformException catch (e, s) {
+    } on PlatformException catch (e) {
       throw AuthException(message: e.message ?? 'Erro ao realizar login');
-    } on FirebaseAuthException catch (e, s) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'too-many-requests') {
         throw AuthException(message: 'Tente novamente mais tarde');
       }
@@ -77,7 +76,7 @@ class UserRepositoryImpl implements UserRepository {
       } else {
         throw AuthException(message: 'E-mail não cadastrado');
       }
-    } on PlatformException catch (e) {
+    } on PlatformException {
       throw AuthException(message: 'Erro ao resetar senha');
     }
   }
@@ -107,7 +106,7 @@ class UserRepositoryImpl implements UserRepository {
           return userCredencial.user;
         }
       }
-    } on FirebaseAuthException catch (e, s) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'account-exists-with-different-credential') {
         throw AuthException(message: '''
           Login inválido você se registrou no TodoList com os seguintes provedores:
@@ -117,6 +116,7 @@ class UserRepositoryImpl implements UserRepository {
         throw AuthException(message: 'Erro ao realizar login');
       }
     }
+    return null;
   }
   
   @override

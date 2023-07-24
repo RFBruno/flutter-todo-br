@@ -79,6 +79,10 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         actions: [
           PopupMenuButton(
+            splashRadius: 25,
+            
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
             icon: Icon(
               TodoListIcons.filter,
               color: context.primaryColor,
@@ -89,7 +93,9 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context) => [
               PopupMenuItem(
                 value: true,
-                child: Text('${context.read<HomeController>().showFinishTask ? 'Ocultar' : 'Mostrar'} tarefas concluidas'),
+                mouseCursor: MaterialStateMouseCursor.textable,
+                child: Text(
+                    '${context.read<HomeController>().showFinishTask ? 'Ocultar' : 'Mostrar'} tarefas concluidas'),
               ),
             ],
           )

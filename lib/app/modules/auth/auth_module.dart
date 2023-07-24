@@ -18,7 +18,7 @@ class AuthModule extends TodoListModule {
           ],
           routes: {
             '/login': (context) => const LoginPage(),
-            '/register': (context) => RegisterPage(),
+            '/register': (context) => const RegisterPage(),
           },
         );
 }

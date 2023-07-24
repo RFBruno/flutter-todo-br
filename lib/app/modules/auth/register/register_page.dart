@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:flutter_todo_br/app/core/notifier/default_listener_notifier.dart';
 import 'package:flutter_todo_br/app/core/ui/theme_extensions.dart';
 import 'package:flutter_todo_br/app/core/validators/validators.dart';
@@ -10,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({super.key});
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();

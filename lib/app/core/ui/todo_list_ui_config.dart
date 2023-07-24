@@ -35,12 +35,8 @@ class TodoListUiConfig {
           backgroundColor: _primaryColor
         ),
 
-        textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30)
-            )
-          )
-        )
+        highlightColor: Colors.transparent
+        
+        
       );
 }

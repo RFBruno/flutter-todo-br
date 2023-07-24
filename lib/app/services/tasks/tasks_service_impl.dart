@@ -20,7 +20,7 @@ class TasksServiceImpl implements TasksService {
 
   @override
   Future<List<TaskModel>> getTomorrow() {
-    var tomorrow = DateTime.now().add(Duration(days: 1));
+    var tomorrow = DateTime.now().add(const Duration(days: 1));
     return _tasksRepository.findByPeriod(tomorrow, tomorrow);
   }
 
@@ -35,7 +35,7 @@ class TasksServiceImpl implements TasksService {
           startFilter.subtract(Duration(days: (startFilter.weekday - 1)));
     }
 
-    endFilter = startFilter.add(Duration(days: 7));
+    endFilter = startFilter.add(const Duration(days: 7));
     final tasks = await _tasksRepository.findByPeriod(startFilter, endFilter);
 
     return WeekTaskModel(
